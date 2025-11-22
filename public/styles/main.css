@@ -1,0 +1,28 @@
+h1{
+    font-size: 72px;
+    width: screen;
+    text-align: center;
+}
+
+.imgSelector{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.imgSelector input{
+    height: 2rem;
+    width: 50vw;
+    border: 5px solid black;
+}
+
+.imgBox{
+    width: 85vw;
+    pading: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 15px double black;
+}

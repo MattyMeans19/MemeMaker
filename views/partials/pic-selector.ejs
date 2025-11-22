@@ -1,0 +1,18 @@
+
+<div class="imgSelector">
+    <input type="text" id="search" name="search" placeholder="Search Photos"></input>
+    <a href="https://www.pexels.com">Photos provided by Pexels</a>
+    <div class="imgBox">
+        <% if(locals.picResults.length > 0) { %>
+        <% for(let i = 0; i < locals.picResults.length; i++) { %>
+            <div>
+               <img height="200px" width="200px" src='<%= locals.picResults[i].src.small %>' alt='<%- locals.picResults[i].alt %>'/> 
+            </div>
+
+        <% } %>
+        <% } else{ %>
+             <h3>Error Fetching Pics</h3>
+        <% } %>  
+    </div>
+
+</div>

@@ -10,7 +10,7 @@
         <% if(result.photos.length > 0) { %>
         <% for(let i = 0; i < result.photos.length; i++) { %>
             <button class="imageTile" value='<%= result.photos[i].id %>' onclick=NextStep(this.value)>
-               <img src='<%= result.photos[i].src.small %>' alt='<%- result.photos[i].alt %>'/>
+               <img src='<%= result.photos[i].src.small %>' alt='<%= result.photos[i].alt %>'/>
                <p>
                 Photographer: 
                </p>
@@ -71,14 +71,8 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(dataToSend),
-        }) .then(response => {
-                // Always check if the response was successful (status code 200-299)
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-                location.reload()
-            })
-            .catch(error => console.error('Error:', error));
+        }) .then(result => {
+            location.reload();
+        })
     }
 </script>

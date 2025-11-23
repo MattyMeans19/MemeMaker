@@ -21,7 +21,6 @@ app.get("/", async (req, res) =>{
     res.render("main.ejs")
 })
 app.get("/maker", async (req,res) =>{
-    currentstep = 1;
     try{
         const result = await client.photos.curated({page: currentpage, per_page: 20});
         res.render("maker.ejs", {result: result, step: currentstep});  
@@ -64,16 +63,19 @@ app.post("/search", async (req,res) =>{
 })
 
 app.post("/step-two", async (req, res) => {
-    currentstep = req.body["step"];
+    currentstep ++;
     const id = req.body["id"];
+
+    console.log(id);
 
     try {
         const result = await client.photos.show({ id: id });
+        console.log(result)
         // 🎯 FIX: Respond with a JSON object containing the necessary data
         res.json({
             status: "success",
             message: "Photo data fetched successfully",
-            selectedPic: result, // Send the data back in JSON format
+            result: result,
             step: currentstep
         });
 

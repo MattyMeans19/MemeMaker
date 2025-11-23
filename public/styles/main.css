@@ -1,7 +1,24 @@
+body{
+    background-color: #1b8500;
+    background-image: url("https://www.transparenttextures.com/patterns/gplay.png");
+    
+}
+
+header{
+    align-items: start;
+    background-color: rgba(201, 201, 201, 0.45);
+    text-align: center;
+}
+
+footer{
+    width: 90vw;
+    text-align: center;
+    font-size: 32px;
+}
+
 h1{
     font-size: 72px;
     width: screen;
-    text-align: center;
 }
 
 .imgSelector{
@@ -21,8 +38,30 @@ h1{
 .imgBox{
     width: 85vw;
     pading: 5px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     border: 15px double black;
+    align-items: center;
+    padding: 5px 5px;
+}
+
+.imageTile{
+    flex-grow: 1;
+    flex-basis: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1px;
+    justify-content: center;
+    text-align: center;
+    border: 10px double black;
+    margin: 5px 5px;
+    background-color: rgba(238, 238, 238, 0.51)
+}
+
+.next_prev{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    text-align: center;
+    font-size: 24px;
 }

@@ -3,16 +3,43 @@
     <input type="text" id="search" name="search" placeholder="Search Photos"></input>
     <a href="https://www.pexels.com">Photos provided by Pexels</a>
     <div class="imgBox">
-        <% if(locals.picResults.length > 0) { %>
-        <% for(let i = 0; i < locals.picResults.length; i++) { %>
-            <div>
-               <img height="200px" width="200px" src='<%= locals.picResults[i].src.small %>' alt='<%- locals.picResults[i].alt %>'/> 
+        <% if(picResults.length > 0) { %>
+        <% for(let i = 0; i < picResults.length; i++) { %>
+            <div class="imageTile">
+               <img src='<%= picResults[i].src.small %>' alt='<%- picResults[i].alt %>'/>
+               <p>
+                Photographer: 
+               </p>
+            <a href='<%= picResults[i].photographer_url %>'>
+                <%= picResults[i].photographer %>
+            </a>
             </div>
-
         <% } %>
+            <div class="next_prev">
+                <% if(prevpage) {%>
+                    <p>
+                        ◀ <%= currentpage %>
+                    </p>
+                    <% } %>
+                <% if(nextpage) {%>
+                   <p>
+                       <%= currentpage + 1 %> ▶
+                   </p>
+                <% } %>
+            </div>
         <% } else{ %>
              <h3>Error Fetching Pics</h3>
         <% } %>  
     </div>
 
 </div>
+
+<script>
+    function NextPage(){
+
+    }
+
+    function PrevPage(){
+        
+    }
+</script>

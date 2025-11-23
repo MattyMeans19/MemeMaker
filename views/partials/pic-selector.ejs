@@ -7,30 +7,30 @@
     
     <a href="https://www.pexels.com">Photos provided by Pexels</a>
     <div class="imgBox">
-        <% if(picResults.length > 0) { %>
-        <% for(let i = 0; i < picResults.length; i++) { %>
-            <div class="imageTile">
-               <img src='<%= picResults[i].src.small %>' alt='<%- picResults[i].alt %>'/>
+        <% if(result.photos.length > 0) { %>
+        <% for(let i = 0; i < result.photos.length; i++) { %>
+            <button class="imageTile" value='<%= result.photos[i].id %>' onclick=NextStep(this.value)>
+               <img src='<%= result.photos[i].src.small %>' alt='<%- result.photos[i].alt %>'/>
                <p>
                 Photographer: 
                </p>
-            <a href='<%= picResults[i].photographer_url %>'>
-                <%= picResults[i].photographer %>
+            <a href='<%= result.photos[i].photographer_url %>'>
+                <%= result.photos[i].photographer %>
             </a>
-            </div>
+            </button>
         <% } %>
             <div class="next_prev">
-                <% if(prevpage) {%>
+                <% if(result.prev_page) {%>
                     <span>
                         <button onclick=PrevPage()>
                            ◀ 
                         </button>
-                         <%= currentpage %>
+                         <%= result.page %>
                     </span>
                     <% } %>
-                <% if(nextpage) {%>
+                <% if(result.next_page) {%>
                    <span>
-                       <%= currentpage + 1 %> 
+                       <%= result.page + 1 %> 
                        <button onclick=NextPage()>
                             ▶
                         </button>
@@ -45,6 +45,7 @@
 </div>
 
 <script>
+
     function PrevPage(){
         fetch("/prevpage", {
             method: 'POST',
@@ -58,5 +59,26 @@
             }).then(result => {
                 location.reload();
             })
-        }
+    }
+    function NextStep(id) {
+        const photoID = id;
+        // 1. Serialize the body to JSON
+        const dataToSend = { id:  photoID, step: 2};
+
+        fetch("/step-two", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataToSend),
+        }) .then(response => {
+                // Always check if the response was successful (status code 200-299)
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+                location.reload()
+            })
+            .catch(error => console.error('Error:', error));
+    }
 </script>

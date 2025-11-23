@@ -53,9 +53,11 @@ form #searchButton{
     border: 15px double black;
     align-items: center;
     padding: 5px 5px;
+    background-color: rgba(129, 129, 129, 0.42);
 }
 
 .imageTile{
+    cursor: pointer;
     flex-grow: 1;
     flex-basis: auto;
     display: flex;
@@ -66,7 +68,7 @@ form #searchButton{
     text-align: center;
     border: 10px double black;
     margin: 5px 5px;
-    background-color: rgba(238, 238, 238, 0.51)
+    background-color: rgba(238, 238, 238, 0.73)
 }
 
 .next_prev{

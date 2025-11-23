@@ -1,10 +1,16 @@
 <%- include('./partials/header.ejs') %>
 
 <body>
-    <h2>1.) Pick a Photo</h2>
-    <%- include('./partials/pic-selector.ejs') %>
-    <h2>2.) Add some text</h2>
-    <h2>3.)Save your Meme to use anywhere!</h2>
+    <% console.log(step) %>
+    <%if(step === 1){%>
+        <h2>Step 1.) Pick a Photo</h2>
+        <%- include('./partials/pic-selector.ejs') %>
+    <%} else if(step === 2) {%>
+        <h2>Step 2.) Add some text</h2>
+    <%} else if(step === 3){%>
+        <h2>Step 3.)Save your Meme to use anywhere!</h2>
+    <%}%>
+    
 </body>
 
 <%- include('./partials/footer.ejs') %>

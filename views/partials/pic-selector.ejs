@@ -1,6 +1,10 @@
 
 <div class="imgSelector">
-    <input type="text" id="search" name="search" placeholder="Search Photos"></input>
+    <form action="/search" method="POST">
+       <input type="text" id="search" name="search" placeholder="Search Photos"></input>
+       <input type="submit" id="searchButton" value="Search"></button>
+    </form>
+    
     <a href="https://www.pexels.com">Photos provided by Pexels</a>
     <div class="imgBox">
         <% if(picResults.length > 0) { %>
@@ -17,29 +21,42 @@
         <% } %>
             <div class="next_prev">
                 <% if(prevpage) {%>
-                    <p>
-                        ◀ <%= currentpage %>
-                    </p>
+                    <span>
+                        <button onclick=PrevPage()>
+                           ◀ 
+                        </button>
+                         <%= currentpage %>
+                    </span>
                     <% } %>
                 <% if(nextpage) {%>
-                   <p>
-                       <%= currentpage + 1 %> ▶
-                   </p>
+                   <span>
+                       <%= currentpage + 1 %> 
+                       <button onclick=NextPage()>
+                            ▶
+                        </button>
+                   </span>
                 <% } %>
             </div>
         <% } else{ %>
-             <h3>Error Fetching Pics</h3>
+             <h3><%= error %></h3>
         <% } %>  
     </div>
 
 </div>
 
 <script>
-    function NextPage(){
-
-    }
-
     function PrevPage(){
-        
+        fetch("/prevpage", {
+            method: 'POST',
+        }).then(result =>{
+            location.reload(); 
+        })
     }
+    function NextPage() {
+            fetch("/nextpage", {
+                method: 'POST',
+            }).then(result => {
+                location.reload();
+            })
+        }
 </script>

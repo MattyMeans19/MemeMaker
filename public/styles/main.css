@@ -21,6 +21,16 @@ h1{
     width: screen;
 }
 
+form{
+    width: 50vw;
+    text-align: center;
+    align-self: center;
+}
+form #searchButton{
+    width: 25vw;
+    margin-top: 5px;
+}
+
 .imgSelector{
     padding: 10px;
     display: flex;
